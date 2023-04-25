@@ -3,7 +3,6 @@ package edu.temple.myapplication
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -12,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,11 +62,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+
+        if (item.itemId == R.id.action_start){
+            binder?.start(100)
+            return true
+        }
+        if (item.itemId == R.id.action_stop){
+            binder?.stop()
+            return true
+        }
+        if (item.itemId == R.id.action_pause){
+            binder?.pause()
+            return true
+        }
+
+        //return super.onOptionsItemSelected(item)
+        return false
     }
 
     override fun onDestroy() {

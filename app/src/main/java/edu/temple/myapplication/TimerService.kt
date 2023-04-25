@@ -91,8 +91,10 @@ class TimerService : Service() {
                     Log.d("Countdown", i.toString())
                     timerHandler?.sendEmptyMessage(i)
 
-                        while (paused);
                         sleep(1000)
+                        while (paused);
+                        Log.d("Countdown", i.toString())
+                        timerHandler?.sendEmptyMessage(i)
 
                 }
                 isRunning = false
